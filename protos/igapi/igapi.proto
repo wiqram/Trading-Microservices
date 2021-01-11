@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option go_package = "github.com/wiqram/IG-Trading-Microservices/protos/igapi";
+option java_package = "com.iggroup.webapi.samples.client.grpc";
+option java_outer_classname = "Igapi";
+package demo_igapi;
+
+service IgSvc {
+    rpc tradeAction (OpenTradeRequest) returns (TradeResponse);
+}
+
+//The request containing any user identifier, the instrument to deal on and direction of trade, buy long or sell short
+message OpenTradeRequest {
+    string user_id = 1;
+    string epic = 2;
+    bool buy = 3;
+}
+
+//response containing transId and price at which the trade was executed
+message TradeResponse {
+    string transactionId = 1;
+    int32 tradePrice = 2;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package gmailapi;
+
+option go_package = "github.com/wiqram/IG-Trading-Microservices/protos/gmailapi";
+
+service GmailapiSvc {
+    rpc subscribeToMail (SubscriptionRequest) returns (SubscriptionResponse);
+}
+
+//The request containing any user identifier, the labelname to monitor and the topicname to subscribe to
+message SubscriptionRequest {
+    string email_id = 1;
+    string labelName = 2;
+    string topicName = 3;
+}
+
+//response containing transId and historyid of gmail watch response
+message SubscriptionResponse {
+    string transactionId = 1;
+    string historyId = 2;
+}
